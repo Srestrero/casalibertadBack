@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface EstablecimientosCarcRepository extends JpaRepository<EstablecimientosCarc,Integer> {
     
-    public EstablecimientosCarc findByUniqId(int uniqId);
+    public EstablecimientosCarc findByUniqid(int uniqid);
     
 }

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AntecedentesPrivLibRepository extends JpaRepository<AntecedentesPrivLib,Integer> {
     
-    public AntecedentesPrivLib findByUniqId(int uniqId);
+    public AntecedentesPrivLib findByUniqid(int uniqid);
     public AntecedentesPrivLib findByUsuarios(Usuarios usuarios);
     
 }

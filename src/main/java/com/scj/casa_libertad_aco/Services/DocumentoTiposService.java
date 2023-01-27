@@ -17,7 +17,7 @@ public class DocumentoTiposService {
     */
     public DocumentoTipos getDocumentoTipo(int tipo_documeto_uniqid)throws Exception{
         try{
-        DocumentoTipos documento = documentoTipoRepository.findByUniqId(tipo_documeto_uniqid);
+        DocumentoTipos documento = documentoTipoRepository.findByUniqid(tipo_documeto_uniqid);
         return documento;
         }catch(Exception e){
         return null;

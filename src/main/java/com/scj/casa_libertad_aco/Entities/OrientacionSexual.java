@@ -13,8 +13,7 @@ import lombok.*;
 public class OrientacionSexual implements Serializable {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY )
-    private int uniqId;
+    private int uniqid;
     
     @Column(name = "orientacion" )
     private String orientacionSexual;

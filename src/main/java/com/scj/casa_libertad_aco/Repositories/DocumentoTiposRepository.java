@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DocumentoTiposRepository extends JpaRepository<DocumentoTipos,Integer> {
     
-    public DocumentoTipos findByUniqId(int uniqId);
+    public DocumentoTipos findByUniqid(int uniqid);
     
 }

@@ -10,11 +10,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, 
+    RequestMethod.DELETE})
 @RequestMapping("/registro")
 public class UsuariosController {
     
     @Autowired
     private UsuariosService usuariosService;
+    
+    @GetMapping("/saludo")
+    public String saludar(){
+        return "Hola";
+    }
     
     @GetMapping("/consulta")
     public ResponseEntity<ConsultaUsuariosDTO> consultarUsuario(@RequestParam String numeroDocumento)

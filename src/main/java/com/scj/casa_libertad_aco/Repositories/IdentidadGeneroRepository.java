@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface IdentidadGeneroRepository extends JpaRepository<IdentidadGenero,Integer> {
     
-    public IdentidadGenero findByUniqId(int uniqId);
+    public IdentidadGenero findByUniqid(int uniqid);
     
 }

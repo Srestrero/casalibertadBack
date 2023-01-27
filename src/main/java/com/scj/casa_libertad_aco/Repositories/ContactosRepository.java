@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 
 public interface ContactosRepository extends JpaRepository<Contactos,Integer> {
     
-    public Contactos findByUniqId(int uniqId);
+    public Contactos findByUniqid(int uniqid);
     
 }

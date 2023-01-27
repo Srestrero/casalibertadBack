@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MediosConocimientoRepository extends JpaRepository<MediosConocimiento,Integer> {
     
-    public MediosConocimiento findByUniqId(int uniqId);
+    public MediosConocimiento findByUniqid(int uniqid);
     
 }

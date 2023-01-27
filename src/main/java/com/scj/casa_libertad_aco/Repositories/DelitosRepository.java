@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DelitosRepository extends JpaRepository<Delitos,Integer> {
     
-    public Delitos findByUniqId(int uniqId);
+    public Delitos findByUniqid(int uniqid);
 
 
     

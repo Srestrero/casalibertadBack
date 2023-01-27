@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 public interface ViviendasRepository extends JpaRepository<Viviendas,Integer> {
     
     
-    public Viviendas findByUniqId(int uniqId);
+    public Viviendas findByUniqid(int uniqid);
     
 
     

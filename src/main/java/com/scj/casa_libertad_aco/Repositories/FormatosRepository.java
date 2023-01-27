@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface FormatosRepository extends JpaRepository<Formatos,Integer> {
     
-    public Formatos findByUniqId(int uniqId);
+    public Formatos findByUniqid(int uniqid);
     public Formatos findByUsuarios(Usuarios usuarios); 
     
 }

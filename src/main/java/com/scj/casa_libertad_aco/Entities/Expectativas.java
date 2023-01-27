@@ -13,8 +13,7 @@ import lombok.*;
 public class Expectativas implements Serializable {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY )
-    private int uniqId;
+    private int uniqid;
     
     @Column(name = "expectativa")
     private String expectativaProgr;

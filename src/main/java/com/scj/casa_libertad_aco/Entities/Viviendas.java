@@ -13,8 +13,7 @@ import lombok.*;
 public class Viviendas implements Serializable {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY )
-    private int uniqId;
+    private int uniqid;
     
     @Column(name = "tipo_vivienda")
     private String tipoVivienda;

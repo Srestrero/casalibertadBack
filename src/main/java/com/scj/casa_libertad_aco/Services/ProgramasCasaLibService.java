@@ -38,17 +38,20 @@ public class ProgramasCasaLibService {
     /*
     C-Crear
     */
-    public ProgramasCasaLib crearProgramasCasaLib(String numeroDocumento,ConsultaProgramasCasaLibDTO consultaProgramasCasaLibDTO){
+    public ProgramasCasaLib crearProgramasCasaLib(String numeroDocumento,
+            ConsultaProgramasCasaLibDTO consultaProgramasCasaLibDTO){
+        
         Usuarios usuarios = usuariosRepository.findByNumeroDocumento(numeroDocumento);
         //ProgramasCasaLib programas =  programasCasaLibRepository.findByUsuarios(usuarios);
         ProgramasCasaLib programas = new ProgramasCasaLib(); 
         programas.setOtroMedioConoc(consultaProgramasCasaLibDTO.getOtr_medio_conoc());
         programas.setNombresOtroFunc(consultaProgramasCasaLibDTO.getNombres_otro_func());
-        MediosConocimiento medios = mediosConocimientoRepository.findByUniqId(consultaProgramasCasaLibDTO.getMedios_conoc_uniqid());
+        MediosConocimiento medios = mediosConocimientoRepository.findByUniqid(consultaProgramasCasaLibDTO.getMedios_conoc_uniqid());
         programas.setMediosConocs(medios);
-        Expectativas expectativas = expectativasRepository.findByUniqId(consultaProgramasCasaLibDTO.getExpectativas_uniqid());
+        Expectativas expectativas = expectativasRepository.findByUniqid(consultaProgramasCasaLibDTO.getExpectativas_uniqid());
         programas.setExpectativas(expectativas);
-        FuncionariosRegistro funcionario = funcionariosRegistroRepository.findByUniqId(consultaProgramasCasaLibDTO.getFuncs_registro_uniqid());
+        FuncionariosRegistro funcionario = funcionariosRegistroRepository.findByUniqid(consultaProgramasCasaLibDTO.getFuncs_registro_uniqid());
+        programas.setFuncionarioRegistros(funcionario);
         programas.setUsuarios(usuarios);
         
         return programasCasaLibRepository.save(programas);
@@ -62,15 +65,19 @@ public class ProgramasCasaLibService {
     R-Consultar
     */
     public ConsultaProgramasCasaLibDTO consultaProgramas(String numDocumento)throws Exception{
-        try{
+        try{//Hay que considerar null pointe exception
         Usuarios usuarios = usuariosRepository.findByNumeroDocumento(numDocumento);
         ProgramasCasaLib programas = programasCasaLibRepository.findByUsuarios(usuarios);
+        if(programas ==null){
+            ConsultaProgramasCasaLibDTO consulta = new ConsultaProgramasCasaLibDTO();
+            return consulta;
+        }
         ConsultaProgramasCasaLibDTO consulta = new ConsultaProgramasCasaLibDTO();
         consulta.setOtr_medio_conoc(programas.getOtroMedioConoc());
         consulta.setNombres_otro_func(programas.getNombresOtroFunc());
-        consulta.setMedios_conoc_uniqid(programas.getMediosConocs().getUniqId());
-        consulta.setExpectativas_uniqid(programas.getExpectativas().getUniqId());
-        consulta.setFuncs_registro_uniqid(programas.getFuncionarioRegistros().getUniqId());
+        consulta.setMedios_conoc_uniqid(programas.getMediosConocs().getUniqid());
+        consulta.setExpectativas_uniqid(programas.getExpectativas().getUniqid());
+        consulta.setFuncs_registro_uniqid(programas.getFuncionarioRegistros().getUniqid());
         
         return consulta;
         
@@ -86,14 +93,18 @@ public class ProgramasCasaLibService {
             ConsultaProgramasCasaLibDTO consultaProgramasCasaLibDTO)throws Exception{
         try{
         Usuarios usuarios = usuariosRepository.findByNumeroDocumento(numeroDocumento);
-        ProgramasCasaLib programas = new ProgramasCasaLib(); 
+        ProgramasCasaLib programas = new ProgramasCasaLib();
+        if(programas==null){
+            return null;
+        }
         programas.setOtroMedioConoc(consultaProgramasCasaLibDTO.getOtr_medio_conoc());
         programas.setNombresOtroFunc(consultaProgramasCasaLibDTO.getNombres_otro_func());
-        MediosConocimiento medios = mediosConocimientoRepository.findByUniqId(consultaProgramasCasaLibDTO.getMedios_conoc_uniqid());
+        MediosConocimiento medios = mediosConocimientoRepository.findByUniqid(consultaProgramasCasaLibDTO.getMedios_conoc_uniqid());
         programas.setMediosConocs(medios);
-        Expectativas expectativas = expectativasRepository.findByUniqId(consultaProgramasCasaLibDTO.getExpectativas_uniqid());
+        Expectativas expectativas = expectativasRepository.findByUniqid(consultaProgramasCasaLibDTO.getExpectativas_uniqid());
         programas.setExpectativas(expectativas);
-        FuncionariosRegistro funcionario = funcionariosRegistroRepository.findByUniqId(consultaProgramasCasaLibDTO.getFuncs_registro_uniqid());
+        FuncionariosRegistro funcionario = funcionariosRegistroRepository.findByUniqid(consultaProgramasCasaLibDTO.getFuncs_registro_uniqid());
+        programas.setFuncionarioRegistros(funcionario);
         programas.setUsuarios(usuarios);
         
         return programasCasaLibRepository.save(programas);

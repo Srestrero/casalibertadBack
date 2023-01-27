@@ -15,14 +15,13 @@ import lombok.*;
 public class DatosDemograficos implements Serializable{
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY )
     private int uniqid;
     
     @Column(name = "fecha_nacimiento")
     private Date fechaNacimiento;
     
     @ManyToOne
-    @JoinColumn(name = "uniqid")
+    @JoinColumn(name = "nacionalidades_uniqid")
     private Nacionalidades nacionalidad;
     
     @ManyToOne

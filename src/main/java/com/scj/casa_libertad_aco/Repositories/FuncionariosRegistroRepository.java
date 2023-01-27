@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface FuncionariosRegistroRepository extends JpaRepository<FuncionariosRegistro,Integer> {
     
-    public FuncionariosRegistro findByUniqId(int uniqId);
+    public FuncionariosRegistro findByUniqid(int uniqid);
     
 }

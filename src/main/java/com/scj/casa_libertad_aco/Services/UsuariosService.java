@@ -28,15 +28,16 @@ public class UsuariosService {
     /*
     R-Consultar
     */
-    public ConsultaUsuariosDTO consultaUsuario(String numeroDocumento){
+    public ConsultaUsuariosDTO consultaUsuario(String numeroDocumento)throws Exception{
         try{
         Usuarios usuario = usuariosrepository.findByNumeroDocumento(numeroDocumento);
         ConsultaUsuariosDTO consultaUsuarioDTO = new ConsultaUsuariosDTO();
-        consultaUsuarioDTO.setCondiciones_programa(usuario.getCondicionesPrograma());
-        consultaUsuarioDTO.setCanal_atencion(usuario.getCanalAtencionAcogida());
-        consultaUsuarioDTO.setAceptacion_terminos(usuario.getAceptacionTermsCondic());
-        consultaUsuarioDTO.setTipo_documento(usuario.getDocumentoTipo().getUniqId());
+        consultaUsuarioDTO.setTipo_documento(usuario.getDocumentoTipo().getUniqid());
         consultaUsuarioDTO.setNum_documento(usuario.getNumeroDocumento());
+        consultaUsuarioDTO.setCondiciones_programa(usuario.getCondicionesPrograma());
+        consultaUsuarioDTO.setCanal_atencion_acogida(usuario.getCanalAtencionAcogida());
+        //consultaUsuarioDTO.setCanal_atencion(usuario.getCanalAtencionAcogida());//aqui estaba el error
+        consultaUsuarioDTO.setAceptacion_terminos(usuario.getAceptacionTermsCondic());//aqui tambien
         consultaUsuarioDTO.setNombres(usuario.getNombres());
         consultaUsuarioDTO.setPrimer_apellido(usuario.getPrimerApellido());
         consultaUsuarioDTO.setSegundo_apellido(usuario.getSegundoApellido());
@@ -51,13 +52,20 @@ public class UsuariosService {
         consultaUsuarioDTO.setCel_1(usuario.getCelular1());
         consultaUsuarioDTO.setCel_2(usuario.getCelular2());
         consultaUsuarioDTO.setCorreo(usuario.getEmail());
-        consultaUsuarioDTO.setNombre_contacto(usuario.getContactos().getNombreContacto());
-        consultaUsuarioDTO.setPrimer_apellido_cont(usuario.getContactos().getPrimerApellidoCont());
-        consultaUsuarioDTO.setSegundo_apellido_cont(usuario.getContactos().getSegundoApeliidoCont());
-        consultaUsuarioDTO.setCel_contacto(usuario.getContactos().getCelContacto());
         consultaUsuarioDTO.setObservaciones(usuario.getObservaciones());
+        if(usuario.getContactos()==null){//cambié la estructra habilitando el if por si nulo
+            
+            return consultaUsuarioDTO;
+        }
+            
+            consultaUsuarioDTO.setNombre_contacto(usuario.getContactos().getNombreContacto());
+            consultaUsuarioDTO.setPrimer_apellido_cont(usuario.getContactos().getPrimerApellidoCont());
+            consultaUsuarioDTO.setSegundo_apellido_cont(usuario.getContactos().getSegundoApeliidoCont());
+            consultaUsuarioDTO.setCel_contacto(usuario.getContactos().getCelContacto());
         
         return consultaUsuarioDTO;
+        
+        
         }catch(Exception e){
         return null;
         }

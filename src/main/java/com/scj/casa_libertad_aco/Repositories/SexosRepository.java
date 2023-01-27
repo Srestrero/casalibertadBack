@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SexosRepository extends JpaRepository<Sexos,Integer> {
     
-    public Sexos findByUniqId(int uniqId);
+    public Sexos findByUniqid(int uniqid);
     
 }

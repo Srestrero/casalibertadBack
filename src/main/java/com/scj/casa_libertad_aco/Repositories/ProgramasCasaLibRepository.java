@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProgramasCasaLibRepository extends JpaRepository<ProgramasCasaLib,Integer> {
     
-            public ProgramasCasaLib findByUniqId(int uniqId);
+            public ProgramasCasaLib findByUniqid(int uniqid);
             public ProgramasCasaLib findByUsuarios(Usuarios usuarios);
 
     

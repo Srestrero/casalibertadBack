@@ -7,12 +7,12 @@ import lombok.*;
 @Data
 public class ConsultaUsuariosDTO {
     
-    //String numero_documento;
-    String condiciones_programa;
-    String canal_atencion;
-    String aceptacion_terminos;
+    //String numero_documento
     int tipo_documento;
     String num_documento;
+    String condiciones_programa;
+    String canal_atencion_acogida;
+    String aceptacion_terminos;
     String nombres;
     String primer_apellido;
     String segundo_apellido;

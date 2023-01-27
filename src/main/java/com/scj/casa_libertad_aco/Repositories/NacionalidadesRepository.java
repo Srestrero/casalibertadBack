@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface NacionalidadesRepository extends JpaRepository<Nacionalidades,Integer> {
     
-    public Nacionalidades findByUniqId(int uniqId);
+    public Nacionalidades findByUniqid(int uniqid);
     
 }

@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface OrientacionSexualRepository extends JpaRepository<OrientacionSexual,Integer> {
     
-    public OrientacionSexual findByUniqId(int uniqId);
+    public OrientacionSexual findByUniqid(int uniqid);
     
 }

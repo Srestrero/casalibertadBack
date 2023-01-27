@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UsuariosRepository extends JpaRepository<Usuarios,Integer> {
     
-            public Usuarios findByUniqId(int uniqId);
+            public Usuarios findByUniqid(int uniqid);
             public Usuarios findByNumeroDocumento(String numeroDocumento);
             //public Usuarios save(Viviendas vivienda);
             

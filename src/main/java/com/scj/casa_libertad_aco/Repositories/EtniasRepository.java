@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface EtniasRepository extends JpaRepository<Etnias,Integer>{
     
-    public Etnias findByUniqId(int uniqId);
+    public Etnias findByUniqid(int uniqid);
     
 }

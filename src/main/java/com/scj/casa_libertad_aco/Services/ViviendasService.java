@@ -22,12 +22,16 @@ public class ViviendasService {
     /*
     R-Consultar
     */
-    public ConsultaViviendaDTO consultarVivienda(String numeroDocumento){
+    public ConsultaViviendaDTO consultarVivienda(String numeroDocumento)throws Exception{
         try{
             Usuarios usuarios = usuariosRepository.findByNumeroDocumento(numeroDocumento);
             Viviendas vivienda = usuarios.getViviendaTipo();
+            if(vivienda==null){
+                ConsultaViviendaDTO consulta = new ConsultaViviendaDTO();
+                return consulta; 
+            }
             ConsultaViviendaDTO consulta = new ConsultaViviendaDTO();
-            consulta.setUniqid(vivienda.getUniqId());
+            consulta.setUniqid(vivienda.getUniqid());
             
             return consulta;
         }catch(Exception e){
@@ -40,7 +44,7 @@ public class ViviendasService {
     */
     public Usuarios crearViviendaUsuario(String numeroDocumento,int tipo){
         Usuarios usuario = usuariosRepository.findByNumeroDocumento(numeroDocumento);
-        Viviendas vivienda = viviendasRepository.findByUniqId(tipo);
+        Viviendas vivienda = viviendasRepository.findByUniqid(tipo);
         usuario.setViviendaTipo(vivienda);
         usuariosRepository.save(usuario);
         return usuario;
@@ -53,7 +57,7 @@ public class ViviendasService {
     public Usuarios actualizaViviendaUsuario(String numeroDocumento,int tipo)throws Exception{
         try{
         Usuarios usuario = usuariosRepository.findByNumeroDocumento(numeroDocumento);
-        Viviendas vivienda = viviendasRepository.findByUniqId(tipo);
+        Viviendas vivienda = viviendasRepository.findByUniqid(tipo);
         usuario.setViviendaTipo(vivienda);
         usuariosRepository.save(usuario);
         return usuario;

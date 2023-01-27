@@ -13,8 +13,7 @@ import lombok.*;
 public class Contactos implements Serializable {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int uniqId;
+    private int uniqid;
     
     @Column(name = "nombre")
     private String nombreContacto;

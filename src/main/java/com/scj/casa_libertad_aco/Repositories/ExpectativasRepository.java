@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ExpectativasRepository  extends JpaRepository<Expectativas,Integer> {
     
-    public Expectativas findByUniqId(int uniqId);
+    public Expectativas findByUniqid(int uniqid);
     
 }

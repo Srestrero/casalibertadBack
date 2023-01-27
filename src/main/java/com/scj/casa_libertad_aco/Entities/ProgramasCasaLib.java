@@ -13,8 +13,7 @@ import lombok.*;
 public class ProgramasCasaLib implements Serializable {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY )
-    private int uniqId;
+    private int uniqid;
     
     @Column(name = "otr_medio_conoc")
     private String otroMedioConoc;

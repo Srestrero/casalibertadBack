@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, 
+    RequestMethod.DELETE})
 @RequestMapping("/antecedentes")
 public class AntecedentesPrivLibController {
     
@@ -32,9 +34,9 @@ public class AntecedentesPrivLibController {
     }
     
     @GetMapping("/consultar")
-    public ResponseEntity<AntecedentesDTO> consultaAntecedentes(@RequestParam String numDocumento)
+    public ResponseEntity<AntecedentesDTO> consultaAntecedentes(@RequestParam String numeroDocumento)
             throws Exception{
-        AntecedentesDTO antecedentes = antecedentesPrivLibService.consultarAntecedentes(numDocumento);
+        AntecedentesDTO antecedentes = antecedentesPrivLibService.consultarAntecedentes(numeroDocumento);
         return new ResponseEntity<AntecedentesDTO>(antecedentes,HttpStatus.OK);
     }
     

@@ -28,6 +28,9 @@ public class FormatosService {
         try {
             Usuarios usuario = usuariosRepository.findByNumeroDocumento(numeroDocumento);
             Formatos formato = formatosRepository.findByUsuarios(usuario);
+            if(formato==null){
+                return null;
+            }
             FormatosDTO formatosDTO = new FormatosDTO();
             formatosDTO.setConsentimiento_firma(formato.getConsentimientoFirma());
             formatosDTO.setTrat_datos_firma(formato.getTratamientoDatosFirma());
@@ -71,6 +74,9 @@ public class FormatosService {
             throws Exception{
         try{
         Formatos formato = new Formatos();
+        if(formato==null){
+            return null;
+        }
         formato.setConsentimientoFirma(formatosDTO.getConsentimiento_firma());
         formato.setTratamientoDatosFirma(formatosDTO.getTrat_datos_firma());
         formato.setAutorizImagenFirma(formatosDTO.getAutoriz_imagen_firma());

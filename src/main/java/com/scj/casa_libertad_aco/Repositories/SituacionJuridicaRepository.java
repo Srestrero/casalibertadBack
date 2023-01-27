@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SituacionJuridicaRepository extends JpaRepository<SituacionJuridica,Integer> {
     
-        public SituacionJuridica findByUniqId(int uniqId);
+        public SituacionJuridica findByUniqid(int uniqid);
 
     
 }

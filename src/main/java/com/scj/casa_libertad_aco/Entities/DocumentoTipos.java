@@ -13,8 +13,7 @@ import lombok.*;
 public class DocumentoTipos implements Serializable {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int uniqId;
+    private int uniqid;
     
     @Column(name = "nombre_documento")
     private String nombreDocumento;

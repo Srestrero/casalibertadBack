@@ -15,8 +15,7 @@ import lombok.*;
 public class Usuarios implements Serializable {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY )
-    private int uniqId;
+    private int uniqid;
     
     /*
     @OneToMany(cascade={CascadeType.PERSIST},mappedBy="usuario")
@@ -37,7 +36,7 @@ public class Usuarios implements Serializable {
     @Column(name = "canal_atencion_acogida")
     private String canalAtencionAcogida;
     
-    @Column(name = "aceptacion_terms_condic")
+    @Column(name = "aceptacion_terms_y_condic")
     private String aceptacionTermsCondic;
     
     @Column(name = "nombres")
