@@ -26,6 +26,59 @@ public class UsuariosService {
     
     
     /*
+    C-Crear
+    */
+    public Usuarios creaUsuario(RegistroDTO registro) throws Exception{
+            try{
+             Contactos contacto = new Contactos();
+           DocumentoTipos documentoTipo = documentoTipoService.getDocumentoTipo(registro.getTipo_documento());
+           Usuarios existeUsuario = usuariosrepository.findByNumeroDocumento(registro.getNum_documento()); 
+           if(existeUsuario!=null){
+           existeUsuario.setDocumentoTipo(documentoTipo);
+           existeUsuario.setCondicionesPrograma(registro.getCondiciones_programa());
+           existeUsuario.setCanalAtencionAcogida(registro.getCanal_atencion());
+           existeUsuario.setAceptacionTermsCondic(registro.getAceptacion_terminos());
+           existeUsuario.setNumeroDocumento(registro.getNum_documento());
+           existeUsuario.setNombres(registro.getNombres());
+           existeUsuario.setPrimerApellido(registro.getPrimer_apellido_cont());
+           existeUsuario.setSegundoApellido(registro.getSegundo_apellido());
+           existeUsuario.setFechaExpedicionDoc(registro.getFecha_expedicion());
+           existeUsuario.setDireccion(registro.getDireccion());
+           existeUsuario.setInfoComplementaria(registro.getInfo_complementaria());
+           existeUsuario.setVerificacionDireccion(registro.getVerificacion_direccion());
+           existeUsuario.setLocalidad(registro.getLocalidad());
+           existeUsuario.setBarrio(registro.getBarrio());
+           existeUsuario.setEstratoSocio(registro.getEstrato());
+           existeUsuario.setTelFijo(registro.getTel_fijo());
+           existeUsuario.setCelular1(registro.getCel_1());
+           existeUsuario.setCelular2(registro.getCel_2());
+           existeUsuario.setEmail(registro.getCorreo());
+           existeUsuario.setObservaciones(registro.getObservaciones());
+           
+           contacto.setNombreContacto(registro.getNombre_contacto());
+           contacto.setPrimerApellidoCont(registro.getPrimer_apellido_cont());
+           contacto.setSegundoApeliidoCont(registro.getSegundo_apellido_cont());
+           contacto.setCelContacto(registro.getCel_contacto());
+           contacto.setUsuarios(existeUsuario);
+           
+           contactosRepository.save(contacto);
+           
+           existeUsuario.setContactos(contacto);
+           usuariosrepository.save(existeUsuario);
+           
+           return existeUsuario;
+           }else{
+               return null;
+           }
+           
+        }catch (Exception e){
+            return null;
+        } 
+    
+    }
+    
+    
+    /*
     R-Consultar
     */
     public ConsultaUsuariosDTO consultaUsuario(String numeroDocumento)throws Exception{
@@ -70,6 +123,7 @@ public class UsuariosService {
         return null;
         }
     }
+
     
     /*
     U-Actualizar
@@ -80,6 +134,7 @@ public class UsuariosService {
            Contactos contacto = new Contactos();
            DocumentoTipos documentoTipo = documentoTipoService.getDocumentoTipo(registro.getTipo_documento());
            Usuarios existeUsuario = usuariosrepository.findByNumeroDocumento(registro.getNum_documento()); 
+           if(existeUsuario!=null){
            existeUsuario.setDocumentoTipo(documentoTipo);
            existeUsuario.setCondicionesPrograma(registro.getCondiciones_programa());
            existeUsuario.setCanalAtencionAcogida(registro.getCanal_atencion());
@@ -110,8 +165,12 @@ public class UsuariosService {
            contactosRepository.save(contacto);
            
            existeUsuario.setContactos(contacto);
+           usuariosrepository.save(existeUsuario);
            
            return existeUsuario;
+           }else{
+               return null;
+           }
            
         }catch (Exception e){
             return null;

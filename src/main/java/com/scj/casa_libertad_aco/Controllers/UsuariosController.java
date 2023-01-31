@@ -31,6 +31,12 @@ public class UsuariosController {
     
     }
     
+    @PostMapping("/save")
+    public ResponseEntity salvarUsuario(@RequestBody RegistroDTO registro) throws Exception{
+        usuariosService.creaUsuario(registro);
+        return ResponseEntity.status(201).build();
+    }
+    
     @PutMapping("/actualizar") 
     public ResponseEntity crearUsuario(@RequestBody RegistroDTO registro) throws Exception{
         

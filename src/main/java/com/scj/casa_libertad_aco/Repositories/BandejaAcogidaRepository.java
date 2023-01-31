@@ -11,5 +11,7 @@ public interface BandejaAcogidaRepository extends JpaRepository<BandejaAcogida,I
     public BandejaAcogida findById(int id);
     public BandejaAcogida findByNumeroDocumento(String numeroDocumento);
     
-    
+    //public List<BandejaAcogida> findAllOrderByCreatedDateDesc(UserEntity user)
+    //findFirstByUserOrderByCreatedDateDesc
+    //sera que findFirstByAllOrderByCreatedDateAsc
 }
