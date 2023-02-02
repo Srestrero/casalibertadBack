@@ -81,50 +81,58 @@ public class UsuariosService {
     /*
     R-Consultar
     */
-    public ConsultaUsuariosDTO consultaUsuario(String numeroDocumento)throws Exception{
-        try{
-        Usuarios usuario = usuariosrepository.findByNumeroDocumento(numeroDocumento);
-        ConsultaUsuariosDTO consultaUsuarioDTO = new ConsultaUsuariosDTO();
-        consultaUsuarioDTO.setTipo_documento(usuario.getDocumentoTipo().getUniqid());
-        consultaUsuarioDTO.setNum_documento(usuario.getNumeroDocumento());
-        consultaUsuarioDTO.setCondiciones_programa(usuario.getCondicionesPrograma());
-        consultaUsuarioDTO.setCanal_atencion_acogida(usuario.getCanalAtencionAcogida());
-        //consultaUsuarioDTO.setCanal_atencion(usuario.getCanalAtencionAcogida());//aqui estaba el error
-        consultaUsuarioDTO.setAceptacion_terminos(usuario.getAceptacionTermsCondic());//aqui tambien
-        consultaUsuarioDTO.setNombres(usuario.getNombres());
-        consultaUsuarioDTO.setPrimer_apellido(usuario.getPrimerApellido());
-        consultaUsuarioDTO.setSegundo_apellido(usuario.getSegundoApellido());
-        consultaUsuarioDTO.setFecha_expedicion(usuario.getFechaExpedicionDoc());
-        consultaUsuarioDTO.setDireccion(usuario.getDireccion());
-        consultaUsuarioDTO.setInfo_complementaria(usuario.getInfoComplementaria());
-        consultaUsuarioDTO.setVerificacion_direccion(usuario.getVerificacionDireccion());
-        consultaUsuarioDTO.setLocalidad(usuario.getLocalidad());
-        consultaUsuarioDTO.setBarrio(usuario.getBarrio());
-        consultaUsuarioDTO.setEstrato(usuario.getEstratoSocio());
-        consultaUsuarioDTO.setTel_fijo(usuario.getTelFijo());
-        consultaUsuarioDTO.setCel_1(usuario.getCelular1());
-        consultaUsuarioDTO.setCel_2(usuario.getCelular2());
-        consultaUsuarioDTO.setCorreo(usuario.getEmail());
-        consultaUsuarioDTO.setObservaciones(usuario.getObservaciones());
-        if(usuario.getContactos()==null){//cambié la estructra habilitando el if por si nulo
-            
-            return consultaUsuarioDTO;
-        }
-            
-            consultaUsuarioDTO.setNombre_contacto(usuario.getContactos().getNombreContacto());
-            consultaUsuarioDTO.setPrimer_apellido_cont(usuario.getContactos().getPrimerApellidoCont());
-            consultaUsuarioDTO.setSegundo_apellido_cont(usuario.getContactos().getSegundoApeliidoCont());
-            consultaUsuarioDTO.setCel_contacto(usuario.getContactos().getCelContacto());
+    public ConsultaUsuariosDTO consultaUsuario(String numeroDocumento) throws Exception {
         
-        return consultaUsuarioDTO;
-        
-        
-        }catch(Exception e){
-        return null;
+        try {
+            Usuarios usuario = usuariosrepository.findByNumeroDocumento(numeroDocumento);
+            ConsultaUsuariosDTO consultaUsuarioDTO = new ConsultaUsuariosDTO();
+            if (usuario == null) {
+                // se necesitari tipo de documento a ser pasado junto con el numero documento,
+                //pero se supone que en recepcion se creo el usuario!!!
+                return null;
+            } else {
+                consultaUsuarioDTO.setTipo_documento(usuario.getDocumentoTipo().getUniqid());
+                consultaUsuarioDTO.setNum_documento(numeroDocumento);
+
+                consultaUsuarioDTO.setCondiciones_programa(usuario.getCondicionesPrograma());
+                consultaUsuarioDTO.setCanal_atencion_acogida(usuario.getCanalAtencionAcogida());
+                //consultaUsuarioDTO.setCanal_atencion(usuario.getCanalAtencionAcogida());//aqui estaba el error
+                consultaUsuarioDTO.setAceptacion_terminos(usuario.getAceptacionTermsCondic());//aqui tambien
+                consultaUsuarioDTO.setNombres(usuario.getNombres());
+                consultaUsuarioDTO.setPrimer_apellido(usuario.getPrimerApellido());
+                consultaUsuarioDTO.setSegundo_apellido(usuario.getSegundoApellido());
+                consultaUsuarioDTO.setFecha_expedicion(usuario.getFechaExpedicionDoc());
+                consultaUsuarioDTO.setDireccion(usuario.getDireccion());
+                consultaUsuarioDTO.setInfo_complementaria(usuario.getInfoComplementaria());
+                consultaUsuarioDTO.setVerificacion_direccion(usuario.getVerificacionDireccion());
+                consultaUsuarioDTO.setLocalidad(usuario.getLocalidad());
+                consultaUsuarioDTO.setBarrio(usuario.getBarrio());
+                consultaUsuarioDTO.setEstrato(usuario.getEstratoSocio());
+                consultaUsuarioDTO.setTel_fijo(usuario.getTelFijo());
+                consultaUsuarioDTO.setCel_1(usuario.getCelular1());
+                consultaUsuarioDTO.setCel_2(usuario.getCelular2());
+                consultaUsuarioDTO.setCorreo(usuario.getEmail());
+                consultaUsuarioDTO.setObservaciones(usuario.getObservaciones());
+                if (usuario.getContactos() == null) {//cambié la estructra habilitando el if por si nulo
+
+                    return consultaUsuarioDTO;
+                }
+
+                consultaUsuarioDTO.setNombre_contacto(usuario.getContactos().getNombreContacto());
+                consultaUsuarioDTO.setPrimer_apellido_cont(usuario.getContactos().getPrimerApellidoCont());
+                consultaUsuarioDTO.setSegundo_apellido_cont(usuario.getContactos().getSegundoApeliidoCont());
+                consultaUsuarioDTO.setCel_contacto(usuario.getContactos().getCelContacto());
+                return consultaUsuarioDTO;
+            }
+
+            //return consultaUsuarioDTO;
+
+        } catch (Exception e) {
+            return null;
         }
     }
 
-    
+
     /*
     U-Actualizar
     */

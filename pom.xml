@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.scj</groupId>
 	<artifactId>casa_libertad_aco</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>casa_libertad_aco</name>
 	<description>Proyecto Casa Libertad Modulo Acojida</description>

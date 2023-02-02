@@ -15,9 +15,9 @@ public class DocumentoTiposService {
     /*
     R-consultar
     */
-    public DocumentoTipos getDocumentoTipo(int tipo_documeto_uniqid)throws Exception{
+    public DocumentoTipos getDocumentoTipo(int tipo_documento_uniqid)throws Exception{
         try{
-        DocumentoTipos documento = documentoTipoRepository.findByUniqid(tipo_documeto_uniqid);
+        DocumentoTipos documento = documentoTipoRepository.findByUniqid(tipo_documento_uniqid);
         return documento;
         }catch(Exception e){
         return null;

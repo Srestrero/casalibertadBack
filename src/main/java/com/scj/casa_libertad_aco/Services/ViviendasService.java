@@ -27,8 +27,8 @@ public class ViviendasService {
             Usuarios usuarios = usuariosRepository.findByNumeroDocumento(numeroDocumento);
             Viviendas vivienda = usuarios.getViviendaTipo();
             if(vivienda==null){
-                ConsultaViviendaDTO consulta = new ConsultaViviendaDTO();
-                return consulta; 
+                //ConsultaViviendaDTO consulta = new ConsultaViviendaDTO();
+                return null; //consulta; 
             }
             ConsultaViviendaDTO consulta = new ConsultaViviendaDTO();
             consulta.setUniqid(vivienda.getUniqid());

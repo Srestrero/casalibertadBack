@@ -71,6 +71,7 @@ public class ProgramasCasaLibService {
         if(programas ==null){
             ConsultaProgramasCasaLibDTO consulta = new ConsultaProgramasCasaLibDTO();
             return consulta;
+            
         }
         ConsultaProgramasCasaLibDTO consulta = new ConsultaProgramasCasaLibDTO();
         consulta.setOtr_medio_conoc(programas.getOtroMedioConoc());

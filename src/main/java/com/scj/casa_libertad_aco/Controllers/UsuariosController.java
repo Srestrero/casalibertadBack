@@ -24,11 +24,13 @@ public class UsuariosController {
     }
     
     @GetMapping("/consulta")
+     //public ConsultaUsuariosDTO consultarUsuario(@RequestParam String numeroDocumento)
+           // throws Exception{ 
     public ResponseEntity<ConsultaUsuariosDTO> consultarUsuario(@RequestParam String numeroDocumento)
             throws Exception{   
     ConsultaUsuariosDTO usuarioDTO = usuariosService.consultaUsuario(numeroDocumento);
     return new ResponseEntity<ConsultaUsuariosDTO>(usuarioDTO,HttpStatus.OK);
-    
+    //return usuarioDTO;
     }
     
     @PostMapping("/save")

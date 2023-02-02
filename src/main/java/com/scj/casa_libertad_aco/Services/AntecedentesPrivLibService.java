@@ -114,7 +114,7 @@ public class AntecedentesPrivLibService {
             if (antecedentesPrivLib == null) {
                 return null;
             }
-            //falta personeria procuraduria
+            
             antecedentesPrivLib.setFechaLibertad(antecedentesDTO.getFecha_libertad());
             antecedentesPrivLib.setMesesCondena(antecedentesDTO.getMeses_condena());
             antecedentesPrivLib.setOtroEstabCarce(antecedentesDTO.getOtro_estab_carce());
