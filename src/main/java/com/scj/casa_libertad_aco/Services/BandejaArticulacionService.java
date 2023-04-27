@@ -51,6 +51,19 @@ public class BandejaArticulacionService {
         return "usuario removido de la bandeja" +id;
     }
     
+    public BandejaArticulacion creaBandejaArticulacion(BandejaArticulacion bandejaArticulacion){
+        
+        BandejaArticulacion bandeja = new BandejaArticulacion();
+        bandeja.setNumeroDocumento(bandejaArticulacion.getNumeroDocumento());
+        bandeja.setNombres(bandejaArticulacion.getNombres());
+        bandeja.setPrimerApellido(bandejaArticulacion.getPrimerApellido());
+        bandeja.setSegundoApellido(bandejaArticulacion.getSegundoApellido());
+        bandeja.setAccion(bandejaArticulacion.getAccion());
+        
+        return bandejaArticulacionRepository.save(bandeja);
+    
+    }
+    
     
     
 }

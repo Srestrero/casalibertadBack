@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -36,6 +37,12 @@ public class BandejaArticulacionController {
     public ResponseEntity eliminaUsuarioBandeja(@RequestBody BandejaArticulacion bandejaArticulacion){
         bandejaArticulacionService.eliminarUsuarioBandeja(bandejaArticulacion.getId());
         return ResponseEntity.status(204).build();
+    }
+    
+    @PostMapping("/save")
+    public ResponseEntity crearUsuarioBandeja(@RequestBody BandejaArticulacion bandejaArticulacion){
+        bandejaArticulacionService.creaBandejaArticulacion(bandejaArticulacion);
+        return ResponseEntity.status(201).build();
     }
     
 }
