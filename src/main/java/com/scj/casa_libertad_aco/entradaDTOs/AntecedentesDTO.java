@@ -9,7 +9,7 @@ public class AntecedentesDTO {
     
     Date fecha_libertad;
     int meses_condena;
-    String otro_estab_carce;
+    String ultimoProceso;
     int aprehend_adolesc;
     int aprehend_mayor;
     String proceso_actual;
@@ -22,7 +22,5 @@ public class AntecedentesDTO {
     String rama_judicial;
     String policia;
     String codigo_seguridad;
-    String sisipec;
-    int usuarios_uniqid;
-    
+    String sisipec;   
 }

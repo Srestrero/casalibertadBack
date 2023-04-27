@@ -30,8 +30,13 @@ public class Contactos implements Serializable {
     @Column(name = "parentesco")
     private String parentesco;
     
-    @OneToOne
+    //@OneToOne(mappedBy="contactos")
+    /*@OneToOne
     @JoinColumn(name = "usuarios_uniqid")
+    private Usuarios usuarios;*/
+    @OneToOne
+    @MapsId
+    @JoinColumn(name="usuarios_uniqid")
     private Usuarios usuarios;
     
     

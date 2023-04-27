@@ -9,6 +9,7 @@ import com.scj.casa_libertad_aco.Repositories.ContactosRepository;
 import com.scj.casa_libertad_aco.Repositories.UsuariosRepository;
 import com.scj.casa_libertad_aco.entradaDTOs.RegistroDTO;
 import com.scj.casa_libertad_aco.salidaDTOs.ConsultaUsuariosDTO;
+import java.time.LocalDate;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.Service;
 
@@ -40,7 +41,7 @@ public class UsuariosService {
            existeUsuario.setAceptacionTermsCondic(registro.getAceptacion_terminos());
            existeUsuario.setNumeroDocumento(registro.getNum_documento());
            existeUsuario.setNombres(registro.getNombres());
-           existeUsuario.setPrimerApellido(registro.getPrimer_apellido_cont());
+           existeUsuario.setPrimerApellido(registro.getPrimer_apellido());
            existeUsuario.setSegundoApellido(registro.getSegundo_apellido());
            existeUsuario.setFechaExpedicionDoc(registro.getFecha_expedicion());
            existeUsuario.setDireccion(registro.getDireccion());
@@ -54,16 +55,20 @@ public class UsuariosService {
            existeUsuario.setCelular2(registro.getCel_2());
            existeUsuario.setEmail(registro.getCorreo());
            existeUsuario.setObservaciones(registro.getObservaciones());
+           existeUsuario.setFechaAcogida(LocalDate.now());
            
            contacto.setNombreContacto(registro.getNombre_contacto());
            contacto.setPrimerApellidoCont(registro.getPrimer_apellido_cont());
            contacto.setSegundoApeliidoCont(registro.getSegundo_apellido_cont());
            contacto.setCelContacto(registro.getCel_contacto());
+           contacto.setParentesco(registro.getParentesco());
            contacto.setUsuarios(existeUsuario);
            
            contactosRepository.save(contacto);
            
-           existeUsuario.setContactos(contacto);
+           Contactos con = contactosRepository.findByUsuarios(existeUsuario);//agregue
+                    
+           existeUsuario.setContactos(con);//cambie contacto por con
            usuariosrepository.save(existeUsuario);
            
            return existeUsuario;
@@ -114,14 +119,25 @@ public class UsuariosService {
                 consultaUsuarioDTO.setCorreo(usuario.getEmail());
                 consultaUsuarioDTO.setObservaciones(usuario.getObservaciones());
                 if (usuario.getContactos() == null) {//cambié la estructra habilitando el if por si nulo
-
+                    /*Contactos cont=contactosRepository.findByUsuarios(usuario);//adicione debido al prblema que no crea el contactos_uniqid
+                    if(cont!=null){
+                    consultaUsuarioDTO.setNombre_contacto(cont.getNombreContacto());//adicione debido al prblema que no crea el contactos_uniqid
+                    consultaUsuarioDTO.setPrimer_apellido_cont(cont.getPrimerApellidoCont());//adicione debido al prblema que no crea el contactos_uniqid
+                    consultaUsuarioDTO.setSegundo_apellido_cont(cont.getSegundoApeliidoCont());//adicione debido al prblema que no crea el contactos_uniqid
+                    consultaUsuarioDTO.setCel_contacto(cont.getCelContacto());//adicione debido al prblema que no crea el contactos_uniqid
+                    consultaUsuarioDTO.setParentesco(cont.getParentesco());//adicione debido al prblema que no crea el contactos_uniqid*/
                     return consultaUsuarioDTO;
-                }
+                    //}else{
+                    //return consultaUsuarioDTO;
+                    }
+                //}
 
                 consultaUsuarioDTO.setNombre_contacto(usuario.getContactos().getNombreContacto());
                 consultaUsuarioDTO.setPrimer_apellido_cont(usuario.getContactos().getPrimerApellidoCont());
-                consultaUsuarioDTO.setSegundo_apellido_cont(usuario.getContactos().getSegundoApeliidoCont());
+                consultaUsuarioDTO.setSegundo_apellido_cont(usuario.getContactos().getSegundoApeliidoCont());   
                 consultaUsuarioDTO.setCel_contacto(usuario.getContactos().getCelContacto());
+                consultaUsuarioDTO.setParentesco(usuario.getContactos().getParentesco());
+                
                 return consultaUsuarioDTO;
             }
 
@@ -149,7 +165,7 @@ public class UsuariosService {
            existeUsuario.setAceptacionTermsCondic(registro.getAceptacion_terminos());
            existeUsuario.setNumeroDocumento(registro.getNum_documento());
            existeUsuario.setNombres(registro.getNombres());
-           existeUsuario.setPrimerApellido(registro.getPrimer_apellido_cont());
+           existeUsuario.setPrimerApellido(registro.getPrimer_apellido());
            existeUsuario.setSegundoApellido(registro.getSegundo_apellido());
            existeUsuario.setFechaExpedicionDoc(registro.getFecha_expedicion());
            existeUsuario.setDireccion(registro.getDireccion());
@@ -168,11 +184,16 @@ public class UsuariosService {
            contacto.setPrimerApellidoCont(registro.getPrimer_apellido_cont());
            contacto.setSegundoApeliidoCont(registro.getSegundo_apellido_cont());
            contacto.setCelContacto(registro.getCel_contacto());
+           contacto.setParentesco(registro.getParentesco());
            contacto.setUsuarios(existeUsuario);
+           
            
            contactosRepository.save(contacto);
            
-           existeUsuario.setContactos(contacto);
+           Contactos con = contactosRepository.findByUsuarios(existeUsuario);//agregue
+           
+           existeUsuario.setContactos(con);//cambie contacto por con
+           
            usuariosrepository.save(existeUsuario);
            
            return existeUsuario;
@@ -183,6 +204,14 @@ public class UsuariosService {
         }catch (Exception e){
             return null;
         }   
+    }
+    
+    /*
+    R-consultar por Id
+    */
+    public Usuarios consultaUsuarios(String documentNumber){
+        return usuariosrepository.findByNumeroDocumento(documentNumber);
+    
     }
     
     

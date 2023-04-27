@@ -11,7 +11,7 @@ public class ConsultaDatosDemDTO {
     Date fecha_nacimiento;
     int nacionalidad;
     int pais_origen;
-    String otro_pais_origen;
+    //String otro_pais_origen;
     int estado_civil;
     int etnia;
     String especifique;

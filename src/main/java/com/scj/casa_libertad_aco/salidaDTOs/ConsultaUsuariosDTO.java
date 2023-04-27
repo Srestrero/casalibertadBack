@@ -7,7 +7,7 @@ import lombok.*;
 @Data
 public class ConsultaUsuariosDTO {
     
-    //String numero_documento
+    //String numero_documento;
     int tipo_documento;
     String num_documento;
     String condiciones_programa;
@@ -31,6 +31,7 @@ public class ConsultaUsuariosDTO {
     String primer_apellido_cont;
     String segundo_apellido_cont;
     long cel_contacto;
+    String parentesco;
     String observaciones;
     
     

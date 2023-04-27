@@ -40,7 +40,8 @@ public class AntecedentesPrivLibService {
         AntecedentesPrivLib antecedentesPrivLib = new AntecedentesPrivLib();
         antecedentesPrivLib.setFechaLibertad(antecedentesDTO.getFecha_libertad());
         antecedentesPrivLib.setMesesCondena(antecedentesDTO.getMeses_condena());
-        antecedentesPrivLib.setOtroEstabCarce(antecedentesDTO.getOtro_estab_carce());
+        //antecedentesPrivLib.setOtroEstabCarce(antecedentesDTO.getOtro_estab_carce());
+        antecedentesPrivLib.setUltimoProceso(antecedentesDTO.getUltimoProceso());
         antecedentesPrivLib.setAprehendAdolesc(antecedentesDTO.getAprehend_adolesc());
         antecedentesPrivLib.setAprehendMayor(antecedentesDTO.getAprehend_mayor());
         antecedentesPrivLib.setProcesoActual(antecedentesDTO.getProceso_actual());
@@ -80,7 +81,8 @@ public class AntecedentesPrivLibService {
         AntecedentesDTO antecedentes = new AntecedentesDTO();
         antecedentes.setFecha_libertad(antecedentesPrivLib.getFechaLibertad());
         antecedentes.setMeses_condena(antecedentesPrivLib.getMesesCondena());
-        antecedentes.setOtro_estab_carce(antecedentesPrivLib.getOtroEstabCarce());
+        //antecedentes.setOtro_estab_carce(antecedentesPrivLib.getUltimoProceso());
+        antecedentes.setUltimoProceso(antecedentesPrivLib.getUltimoProceso());
         antecedentes.setAprehend_adolesc(antecedentesPrivLib.getAprehendAdolesc());
         antecedentes.setAprehend_mayor(antecedentesPrivLib.getAprehendMayor());
         antecedentes.setProceso_actual(antecedentesPrivLib.getProcesoActual());
@@ -94,7 +96,7 @@ public class AntecedentesPrivLibService {
         antecedentes.setPolicia(antecedentesPrivLib.getPolicia());
         antecedentes.setCodigo_seguridad(antecedentesPrivLib.getCodigoSeguridad());
         antecedentes.setSisipec(antecedentesPrivLib.getSisipec());
-        antecedentes.setUsuarios_uniqid(antecedentesPrivLib.getUsuarios().getUniqid());
+        //antecedentes.setUsuarios_uniqid(antecedentesPrivLib.getUsuarios().getUniqid());
         
         return antecedentes;
                         
@@ -117,7 +119,8 @@ public class AntecedentesPrivLibService {
             
             antecedentesPrivLib.setFechaLibertad(antecedentesDTO.getFecha_libertad());
             antecedentesPrivLib.setMesesCondena(antecedentesDTO.getMeses_condena());
-            antecedentesPrivLib.setOtroEstabCarce(antecedentesDTO.getOtro_estab_carce());
+            //antecedentesPrivLib.setOtroEstabCarce(antecedentesDTO.getOtro_estab_carce());
+            antecedentesPrivLib.setUltimoProceso(antecedentesDTO.getUltimoProceso());
             antecedentesPrivLib.setAprehendAdolesc(antecedentesDTO.getAprehend_adolesc());
             antecedentesPrivLib.setAprehendMayor(antecedentesDTO.getAprehend_mayor());
             antecedentesPrivLib.setProcesoActual(antecedentesDTO.getProceso_actual());

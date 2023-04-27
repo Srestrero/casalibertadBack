@@ -7,7 +7,7 @@ import lombok.*;
 @Data
 public class RegistroDTO {
     
-    String numero_documento;
+    //String numero_documento;
     String condiciones_programa;
     String canal_atencion;
     String aceptacion_terminos;
@@ -31,6 +31,7 @@ public class RegistroDTO {
     String primer_apellido_cont;
     String segundo_apellido_cont;
     long cel_contacto;
+    String parentesco;
     String observaciones;
     
     

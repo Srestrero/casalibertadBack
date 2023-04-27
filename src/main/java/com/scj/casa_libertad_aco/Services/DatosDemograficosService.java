@@ -57,9 +57,6 @@ public class DatosDemograficosService {
         datosDem.setFechaNacimiento(consultadatosDemDTO.getFecha_nacimiento());
         datosDem.setNacionalidad(nacionalidadesRepository.findByUniqid(consultadatosDemDTO.getNacionalidad()));
         datosDem.setPais(paisesRepository.findByUniqid(consultadatosDemDTO.getPais_origen()));
-        //Hacer if(Pais es otro){return datosDem.setOtroPais...}else{return datosDem.SetOtroPais=null};
-        //Hay que analizar bien esto!!!!!!!!!!!!!o a lo mejor hay que hacerlo con el javascript!!!!
-        datosDem.setOtroPais(consultadatosDemDTO.getOtro_pais_origen());
         datosDem.setEstadoCivil(estadoCivilRepository.findByUniqid(consultadatosDemDTO.getEstado_civil()));
         datosDem.setEtnia(etniasRepository.findByUniqid(consultadatosDemDTO.getEtnia()));
         datosDem.setOtraEtnia(consultadatosDemDTO.getEspecifique());
@@ -82,7 +79,7 @@ public class DatosDemograficosService {
         try {
             Usuarios usuario = usuariosRepository.findByNumeroDocumento(numeroDocumento);
             DatosDemograficos datosDemograficos = datosDemograficosRepository.findByUsuarios(usuario);
-            //ojo aqui hicimos correción del metodo del repositorio!!! Chequear
+            
             if (datosDemograficos == null) {
                 return null;
             }
@@ -91,7 +88,7 @@ public class DatosDemograficosService {
             consultaDatosDemDTO.setFecha_nacimiento(datosDemograficos.getFechaNacimiento());
             consultaDatosDemDTO.setNacionalidad(datosDemograficos.getNacionalidad().getUniqid());
             consultaDatosDemDTO.setPais_origen(datosDemograficos.getPais().getUniqid());
-            consultaDatosDemDTO.setOtro_pais_origen(datosDemograficos.getOtroPais());
+            //consultaDatosDemDTO.setOtro_pais_origen(datosDemograficos.getOtroPais());
             consultaDatosDemDTO.setEstado_civil(datosDemograficos.getEstadoCivil().getUniqid());
             consultaDatosDemDTO.setEtnia(datosDemograficos.getEtnia().getUniqid());
             consultaDatosDemDTO.setEspecifique(datosDemograficos.getOtraEtnia());
@@ -128,7 +125,7 @@ public class DatosDemograficosService {
         datosDem.setFechaNacimiento(consultadatosDemDTO.getFecha_nacimiento());
         datosDem.setNacionalidad(nacionalidadesRepository.findByUniqid(consultadatosDemDTO.getNacionalidad()));
         datosDem.setPais(paisesRepository.findByUniqid(consultadatosDemDTO.getPais_origen()));
-        datosDem.setOtroPais(consultadatosDemDTO.getOtro_pais_origen());
+        //datosDem.setOtroPais(consultadatosDemDTO.getOtro_pais_origen());
         datosDem.setEstadoCivil(estadoCivilRepository.findByUniqid(consultadatosDemDTO.getEstado_civil()));
         datosDem.setEtnia(etniasRepository.findByUniqid(consultadatosDemDTO.getEtnia()));
         datosDem.setOtraEtnia(consultadatosDemDTO.getEspecifique());
@@ -140,7 +137,7 @@ public class DatosDemograficosService {
         datosDem.setAyudaLectoescritura(consultadatosDemDTO.getAyuda_lectoescritura());
         datosDem.setAyudaTraduccionSeñales(consultadatosDemDTO.getAyuda_traduccion());
         datosDem.setVictimaConflictoArm(consultadatosDemDTO.getVict_conf_arma());
-        //datosDem.setUsuarios(usuariosRepository.findByNumeroDocumento(numeroDocumento));
+        datosDem.setUsuarios(usuariosRepository.findByNumeroDocumento(numeroDocumento));
         return datosDemograficosRepository.save(datosDem);
         
         }catch(Exception e){

@@ -4,6 +4,7 @@ package com.scj.casa_libertad_aco.Entities;
 import java.util.Date;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import javax.persistence.*;
 import lombok.*;
 
@@ -80,16 +81,24 @@ public class Usuarios implements Serializable {
     
     @Column(name = "email")
     private String email;
+       
+    /*@OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="contactos_uniqid",referencedColumnName="uniqid")*/
     
-    @OneToOne
-    @JoinColumn(name = "contactos_uniqid")
+    @OneToOne(mappedBy="usuarios",cascade=CascadeType.ALL)
+    @PrimaryKeyJoinColumn
     private Contactos contactos;
+    
+    
+    /*@OneToOne
+    @JoinColumn(name = "contactos_uniqid")
+    private Contactos contactos;*/
     
     @Column(name = "observaciones")
     private String observaciones;
     
     @Column(name = "fecha_acogida")
-    private Date fechaAcogida;
+    private LocalDate fechaAcogida;
     
     @ManyToOne
     @JoinColumn(name = "viviendas_uniqid")

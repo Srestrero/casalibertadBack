@@ -23,8 +23,8 @@ public class AntecedentesPrivLib implements Serializable {
     @Column(name = "meses_condena")
     private int mesesCondena;
     
-    @Column(name = "otro_estab_carce")
-    private String otroEstabCarce;
+    @Column(name = "ultimo_proceso")
+    private String ultimoProceso;
     
     @Column(name = "aprehend_adolesc")
     private int aprehendAdolesc;

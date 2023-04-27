@@ -28,8 +28,8 @@ public class DatosDemograficos implements Serializable{
     @JoinColumn(name= "paises_uniqid")
     private Paises pais;
     
-    @Column(name = "otro_pais")
-    private String otroPais;
+    //@Column(name = "otro_pais")
+    //private String otroPais;
     
     @ManyToOne
     @JoinColumn(name= "estado_civil_uniqid")

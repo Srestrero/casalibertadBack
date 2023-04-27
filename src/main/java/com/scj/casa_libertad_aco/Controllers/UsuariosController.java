@@ -1,6 +1,7 @@
 
 package com.scj.casa_libertad_aco.Controllers;
 
+import com.scj.casa_libertad_aco.Entities.Usuarios;
 import com.scj.casa_libertad_aco.Services.UsuariosService;
 import com.scj.casa_libertad_aco.entradaDTOs.RegistroDTO;
 import com.scj.casa_libertad_aco.salidaDTOs.ConsultaUsuariosDTO;
@@ -21,6 +22,13 @@ public class UsuariosController {
     @GetMapping("/saludo")
     public String saludar(){
         return "Hola";
+    }
+    
+    @GetMapping("/consultaxId")
+    public Usuarios getUsuario(@RequestParam String documentNumber){
+        
+        return usuariosService.consultaUsuarios(documentNumber);
+           
     }
     
     @GetMapping("/consulta")
