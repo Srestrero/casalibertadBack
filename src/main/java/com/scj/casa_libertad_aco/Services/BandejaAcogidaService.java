@@ -61,4 +61,44 @@ public class BandejaAcogidaService {
         return "usuario removido de la bandeja" +id;
     }
     
+    /*
+    C-Crear
+    */
+    public BandejaAcogida creaBandejaAcogida(BandejaAcogida bandejaAcogida){
+        
+        BandejaAcogida bandeja = new BandejaAcogida();
+        bandeja.setNumeroDocumento(bandejaAcogida.getNumeroDocumento());
+        bandeja.setNombres(bandejaAcogida.getNombres());
+        bandeja.setPrimerApellido(bandejaAcogida.getPrimerApellido());
+        bandeja.setSegundoApellido(bandejaAcogida.getSegundoApellido());
+        bandeja.setAccion(bandejaAcogida.getAccion());
+        
+        return bandejaAcogidaRepository.save(bandeja);
+    
+    }
+    
+    /*
+    U-Actualizar
+    */
+    public BandejaAcogida actualizaBandeja(BandejaAcogida bandejaAcogida)throws Exception{
+        try{
+            BandejaAcogida existeUsuario = bandejaAcogidaRepository.findByNumeroDocumento
+        (bandejaAcogida.getNumeroDocumento());
+            if(existeUsuario!=null){
+                existeUsuario.setAccion(bandejaAcogida.getAccion());
+                bandejaAcogidaRepository.save(existeUsuario);
+                return existeUsuario;
+            }else{
+                return null;
+            }
+            
+        }catch(Exception e){
+            return null;
+        }
+        
+     
+        
+    }
+    
+    
 }

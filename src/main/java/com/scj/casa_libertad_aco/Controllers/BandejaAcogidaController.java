@@ -9,10 +9,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -37,6 +38,19 @@ public class BandejaAcogidaController {
     public ResponseEntity eliminaUsuarioBandeja(@RequestBody BandejaAcogida bandejaAcogida){
         bandejaAcogidaService.eliminarUsuarioBandeja(bandejaAcogida.getId());
         return ResponseEntity.status(204).build();
+    }
+    @PostMapping("/save")
+    public ResponseEntity crearUsuarioBandeja(@RequestBody BandejaAcogida bandejaAcogida){
+        bandejaAcogidaService.creaBandejaAcogida(bandejaAcogida);
+        return ResponseEntity.status(201).build();
+    }
+    
+    @PutMapping("/actualizar")
+    public ResponseEntity actualizaUsuarioBandeja(@RequestBody BandejaAcogida bandejaAcogida)
+            throws Exception{
+        bandejaAcogidaService.actualizaBandeja(bandejaAcogida);
+        return ResponseEntity.status(201).build();
+
     }
     
 }
