@@ -9,7 +9,7 @@
       <package-name>org.springframework.*</package-name>
     </prefer-application-packages>
   </container-descriptor>
-  <context-root>/casa_libertad_acogida</context-root>
+  <context-root>/casa_libertad_aco</context-root>
 </weblogic-web-app>
 <!--<weblogic-web-app xmlns="http://xmlns.oracle.com/weblogic/weblogic-web-app" 
                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
