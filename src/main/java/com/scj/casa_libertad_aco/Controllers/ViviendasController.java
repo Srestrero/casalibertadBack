@@ -1,7 +1,6 @@
 
 package com.scj.casa_libertad_aco.Controllers;
 
-import com.scj.casa_libertad_aco.Entities.Viviendas;
 import com.scj.casa_libertad_aco.Services.ViviendasService;
 import com.scj.casa_libertad_aco.salidaDTOs.ConsultaViviendaDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, 
-    RequestMethod.DELETE})
+    RequestMethod.DELETE})//,allowedHeaders="*")
 @RequestMapping("/vivienda")
 public class ViviendasController {
     
