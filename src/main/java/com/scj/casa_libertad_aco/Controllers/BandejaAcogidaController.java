@@ -36,7 +36,8 @@ public class BandejaAcogidaController {
     
     @DeleteMapping("/delete")
     public ResponseEntity eliminaUsuarioBandeja(@RequestBody BandejaAcogida bandejaAcogida){
-        bandejaAcogidaService.eliminarUsuarioBandeja(bandejaAcogida.getId());
+        //bandejaAcogidaService.eliminarUsuarioBandeja(bandejaAcogida.getId());
+        bandejaAcogidaService.eliminarUsuarioBandeja(bandejaAcogida.getNumeroDocumento());
         return ResponseEntity.status(204).build();
     }
     @PostMapping("/save")

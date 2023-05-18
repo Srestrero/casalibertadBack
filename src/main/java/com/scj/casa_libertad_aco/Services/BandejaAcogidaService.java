@@ -56,9 +56,11 @@ public class BandejaAcogidaService {
     /*
     D-Eliminar
     */
-    public String eliminarUsuarioBandeja(int id){
-        bandejaAcogidaRepository.deleteById(id);
-        return "usuario removido de la bandeja" +id;
+    public String eliminarUsuarioBandeja(String numeroDocumento){
+        BandejaAcogida bandeja = bandejaAcogidaRepository.findByNumeroDocumento(numeroDocumento);
+        bandejaAcogidaRepository.delete(bandeja);
+        
+        return "usuario removido de la bandeja";
     }
     
     /*
