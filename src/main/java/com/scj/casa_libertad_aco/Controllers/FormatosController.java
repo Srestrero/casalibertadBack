@@ -29,14 +29,14 @@ public class FormatosController {
     public ResponseEntity crearFormatos(@RequestParam String numeroDocumento,
             @RequestBody FormatosDTO formatosDTO){
         formatosService.crearFormato(numeroDocumento,formatosDTO);
-        return ResponseEntity.status(201).build();   
+        return ResponseEntity.status(200).build();   
     }
     
     @PutMapping("/actualizar")
     public ResponseEntity actualizaFormatos(@RequestParam String numeroDocumento,
             @RequestBody FormatosDTO formatosDTO)throws Exception {
         formatosService.actualizaFormato(numeroDocumento, formatosDTO);
-        return ResponseEntity.status(201).build();
+        return ResponseEntity.status(200).build();
 
     }
         

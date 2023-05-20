@@ -29,14 +29,14 @@ public class ProgramasCasaLibController {
     public ResponseEntity crearProgramasCasaLib(@RequestParam String numeroDocumento,
             @RequestBody ConsultaProgramasCasaLibDTO consultaProgramasCasaLibDTO ){
         programasCasaLibService.crearProgramasCasaLib(numeroDocumento, consultaProgramasCasaLibDTO);
-        return ResponseEntity.status(201).build();
+        return ResponseEntity.status(200).build();
     }
     
     @PutMapping("/actualizar")
     public ResponseEntity actualizarProgramasCasaLib(@RequestParam  String numeroDocumento,
             @RequestBody ConsultaProgramasCasaLibDTO consultaProgramasCasaLibDTO )throws Exception{
         programasCasaLibService.actualizaProgramasCasaLib(numeroDocumento, consultaProgramasCasaLibDTO);
-        return ResponseEntity.status(201).build(); 
+        return ResponseEntity.status(200).build(); 
         
     }
 

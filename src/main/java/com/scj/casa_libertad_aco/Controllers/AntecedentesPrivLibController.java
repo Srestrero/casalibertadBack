@@ -30,7 +30,7 @@ public class AntecedentesPrivLibController {
     public ResponseEntity crearAntecedentesPrivLib(@RequestParam String numeroDocumento,
             @RequestBody AntecedentesDTO antecedentesDTO ){
         antecedentesPrivLibService.crearAntecedentes(numeroDocumento,antecedentesDTO);
-        return ResponseEntity.status(201).build();
+        return ResponseEntity.status(200).build();
     }
     
     @GetMapping("/consultar")
@@ -44,7 +44,7 @@ public class AntecedentesPrivLibController {
     public ResponseEntity actualizarAntecedentesPrivLib(@RequestParam String numeroDocumento,
             @RequestBody AntecedentesDTO antecedentesDTO )throws Exception{
         antecedentesPrivLibService.actualizaAntecedentes(numeroDocumento,antecedentesDTO);
-        return ResponseEntity.status(201).build();
+        return ResponseEntity.status(200).build();
     } 
     
     

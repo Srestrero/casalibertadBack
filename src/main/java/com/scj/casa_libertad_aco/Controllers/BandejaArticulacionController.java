@@ -42,7 +42,7 @@ public class BandejaArticulacionController {
     @PostMapping("/save")
     public ResponseEntity crearUsuarioBandeja(@RequestBody BandejaArticulacion bandejaArticulacion){
         bandejaArticulacionService.creaBandejaArticulacion(bandejaArticulacion);
-        return ResponseEntity.status(201).build();
+        return ResponseEntity.status(200).build();
     }
     
 }
