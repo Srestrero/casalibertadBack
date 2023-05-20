@@ -27,14 +27,14 @@ public class ViviendasController {
     @PostMapping("/save")
     public ResponseEntity crearViviendaUsuario(@RequestParam String numeroDocumento,@RequestParam int tipo){
         viviendasService.crearViviendaUsuario(numeroDocumento,tipo);
-        return ResponseEntity.status(200).build();   
+        return ResponseEntity.status(201).build();   
     }
     
     @PutMapping("/actualizar")
     public ResponseEntity actualizarViviendaUsuario(@RequestParam String numeroDocumento,@RequestParam int tipo)
             throws Exception{
         viviendasService.actualizaViviendaUsuario(numeroDocumento,tipo);
-        return ResponseEntity.status(200).build();   
+        return ResponseEntity.status(201).build();   
     }
     
     

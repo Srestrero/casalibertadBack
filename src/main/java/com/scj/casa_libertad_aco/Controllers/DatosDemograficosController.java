@@ -29,13 +29,13 @@ public class DatosDemograficosController {
     public ResponseEntity crearDatosDemograficos(@RequestParam String numeroDocumento,
             @RequestBody ConsultaDatosDemDTO consultaDatosDemDTO){
         datosDemograficosService.crearDatosDemog(numeroDocumento,consultaDatosDemDTO);
-        return ResponseEntity.status(200).build();
+        return ResponseEntity.status(201).build();
     }
     
     @PutMapping("/actualizar") 
     public ResponseEntity actualizarDatosDemograficos(@RequestParam String numeroDocumento,
             @RequestBody ConsultaDatosDemDTO consultaDatosDemDTO)throws Exception{
         datosDemograficosService.actualizaDatosDemog(numeroDocumento,consultaDatosDemDTO);
-        return ResponseEntity.status(200).build();
+        return ResponseEntity.status(201).build();
     }  
 }

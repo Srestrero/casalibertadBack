@@ -43,14 +43,14 @@ public class BandejaAcogidaController {
     @PostMapping("/save")
     public ResponseEntity crearUsuarioBandeja(@RequestBody BandejaAcogida bandejaAcogida){
         bandejaAcogidaService.creaBandejaAcogida(bandejaAcogida);
-        return ResponseEntity.status(200).build();
+        return ResponseEntity.status(201).build();
     }
     
     @PutMapping("/actualizar")
     public ResponseEntity actualizaUsuarioBandeja(@RequestBody BandejaAcogida bandejaAcogida)
             throws Exception{
         bandejaAcogidaService.actualizaBandeja(bandejaAcogida);
-        return ResponseEntity.status(200).build();
+        return ResponseEntity.status(201).build();
 
     }
     
