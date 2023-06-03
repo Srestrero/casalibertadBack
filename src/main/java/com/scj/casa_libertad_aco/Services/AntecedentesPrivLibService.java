@@ -12,6 +12,8 @@ import com.scj.casa_libertad_aco.Repositories.EstablecimientosCarcRepository;
 import com.scj.casa_libertad_aco.Repositories.SituacionJuridicaRepository;
 import com.scj.casa_libertad_aco.Repositories.UsuariosRepository;
 import com.scj.casa_libertad_aco.entradaDTOs.AntecedentesDTO;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.Service;
 
@@ -37,35 +39,46 @@ public class AntecedentesPrivLibService {
     Crear
     */
     public AntecedentesPrivLib crearAntecedentes(String numeroDocumento,AntecedentesDTO antecedentesDTO){
-        AntecedentesPrivLib antecedentesPrivLib = new AntecedentesPrivLib();
-        antecedentesPrivLib.setFechaLibertad(antecedentesDTO.getFecha_libertad());
-        antecedentesPrivLib.setMesesCondena(antecedentesDTO.getMeses_condena());
+        Usuarios usuarios = usuariosRepository.findByNumeroDocumento(numeroDocumento);
+        AntecedentesPrivLib antecedentes= antecedentesPrivLibRepository.findByUsuarios(usuarios);
+        if(antecedentes == null){
+        AntecedentesPrivLib nuevoAntecedentes= new AntecedentesPrivLib();
+        nuevoAntecedentes.setFechaLibertad(antecedentesDTO.getFecha_libertad());
+        nuevoAntecedentes.setMesesCondena(antecedentesDTO.getMeses_condena());
         //antecedentesPrivLib.setOtroEstabCarce(antecedentesDTO.getOtro_estab_carce());
-        antecedentesPrivLib.setUltimoProceso(antecedentesDTO.getUltimoProceso());
-        antecedentesPrivLib.setAprehendAdolesc(antecedentesDTO.getAprehend_adolesc());
-        antecedentesPrivLib.setAprehendMayor(antecedentesDTO.getAprehend_mayor());
-        antecedentesPrivLib.setProcesoActual(antecedentesDTO.getProceso_actual());
+        nuevoAntecedentes.setUltimoProceso(antecedentesDTO.getUltimoProceso());
+        nuevoAntecedentes.setAprehendAdolesc(antecedentesDTO.getAprehend_adolesc());
+        nuevoAntecedentes.setAprehendMayor(antecedentesDTO.getAprehend_mayor());
+        nuevoAntecedentes.setProcesoActual(antecedentesDTO.getProceso_actual());
         
         Delitos delitos = delitosRepository.findByUniqid(antecedentesDTO.getDelitos_uniqid());
-        antecedentesPrivLib.setDelitos(delitos);
+        nuevoAntecedentes.setDelitos(delitos);
         
         EstablecimientosCarc establecimientosCarc = establecimientosCarcRepository.findByUniqid(antecedentesDTO.getEstab_carcs_uniqid());
-        antecedentesPrivLib.setEstabCarcelarios(establecimientosCarc);
+        nuevoAntecedentes.setEstabCarcelarios(establecimientosCarc);
        
         SituacionJuridica situacionJuridica = situacionJuridicaRepository.findByUniqid(antecedentesDTO.getSit_jurid_uniqid());
-        antecedentesPrivLib.setSituacionJuridicas(situacionJuridica);
+        nuevoAntecedentes.setSituacionJuridicas(situacionJuridica);
         
-        antecedentesPrivLib.setPersoneria(antecedentesDTO.getPersoneria());
-        antecedentesPrivLib.setProcuraduria(antecedentesDTO.getProcuraduria());
-        antecedentesPrivLib.setContraloria(antecedentesDTO.getContraloria());
-        antecedentesPrivLib.setRamaJudicial(antecedentesDTO.getRama_judicial());
-        antecedentesPrivLib.setPolicia(antecedentesDTO.getPolicia());
-        antecedentesPrivLib.setCodigoSeguridad(antecedentesDTO.getCodigo_seguridad());
-        antecedentesPrivLib.setSisipec(antecedentesDTO.getSisipec());
+        nuevoAntecedentes.setPersoneria(antecedentesDTO.getPersoneria());
+        nuevoAntecedentes.setProcuraduria(antecedentesDTO.getProcuraduria());
+        nuevoAntecedentes.setContraloria(antecedentesDTO.getContraloria());
+        nuevoAntecedentes.setRamaJudicial(antecedentesDTO.getRama_judicial());
+        nuevoAntecedentes.setPolicia(antecedentesDTO.getPolicia());
+        nuevoAntecedentes.setCodigoSeguridad(antecedentesDTO.getCodigo_seguridad());
+        nuevoAntecedentes.setSisipec(antecedentesDTO.getSisipec());
         
-        antecedentesPrivLib.setUsuarios(usuariosRepository.findByNumeroDocumento(numeroDocumento));
+        nuevoAntecedentes.setUsuarios(usuariosRepository.findByNumeroDocumento(numeroDocumento));
         
-        return antecedentesPrivLibRepository.save(antecedentesPrivLib);
+        return antecedentesPrivLibRepository.save(nuevoAntecedentes);
+        }else{
+            try {
+                actualizaAntecedentes(numeroDocumento,antecedentesDTO);
+            } catch (Exception ex) {
+                Logger.getLogger(AntecedentesPrivLibService.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return antecedentesPrivLibRepository.findByUsuarios(usuarios);
     }
     
     /*

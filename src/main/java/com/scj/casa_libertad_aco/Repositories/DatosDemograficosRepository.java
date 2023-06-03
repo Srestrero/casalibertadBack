@@ -10,7 +10,5 @@ import org.springframework.stereotype.Repository;
 public interface DatosDemograficosRepository extends JpaRepository<DatosDemograficos,Integer> {
     
     public DatosDemograficos findByUniqid(int uniqid);
-    public DatosDemograficos findByUsuarios(Usuarios usuarios);
-    
-    
+    public DatosDemograficos findByUsuarios(Usuarios usuario);   
 }

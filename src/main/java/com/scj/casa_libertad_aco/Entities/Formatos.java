@@ -25,19 +25,25 @@ public class Formatos implements Serializable{
     @Column(name = "autoriz_imagen_firma")
     private String autorizImagenFirma;
     
+    //@JoinColumn(name = "adjunto_concentimiento")
+    //@JsonIgnore
+    @Column(name="adjunto_concentimiento",nullable=true)
+    @Basic(optional=false, fetch=FetchType.EAGER)
     @Lob
-    @JoinColumn(name = "adjunto_concentimiento")
-    @JsonIgnore
     private byte[] consentimiento;
     
+    //@JoinColumn(name = "adjunto_trat_datos")
+    //@JsonIgnore
+    @Column(name="adjunto_trat_datos",nullable=true)
+    @Basic(optional=false, fetch=FetchType.EAGER)
     @Lob
-    @JoinColumn(name = "adjunto_trat_datos")
-    @JsonIgnore
     private byte[] autorTratamDatos;
     
+    //@JoinColumn(name = "adjunto_uso_imagen")
+    //@JsonIgnore
+    @Column(name="adjunto_uso_imagen",nullable=true)
+    @Basic(optional=false, fetch=FetchType.EAGER)
     @Lob
-    @JoinColumn(name = "adjunto_uso_imagen")
-    @JsonIgnore
     private byte[] autorUsoImagen;
     
     @Column(name = "medio_att_no_presencial")

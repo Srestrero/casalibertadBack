@@ -9,7 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table( name = "iden_d_gene")
+@Table( name = "iden__d__gene")
 public class IdentidadGenero implements Serializable {
     
     @Id

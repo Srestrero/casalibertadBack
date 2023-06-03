@@ -1,18 +1,19 @@
 
 package com.scj.casa_libertad_aco.Entities;
 
-import java.util.Date;
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.*;
-import lombok.*;
-
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "datos_demog")
-public class DatosDemograficos implements Serializable{
+@Table(name="datos_demog")
+public class DatosDemograficos implements Serializable {
     
     @Id
     private int uniqid;
@@ -20,41 +21,9 @@ public class DatosDemograficos implements Serializable{
     @Column(name = "fecha_nacimiento")
     private Date fechaNacimiento;
     
-    @ManyToOne
-    @JoinColumn(name = "nacionalidades_uniqid")
-    private Nacionalidades nacionalidad;
-    
-    @ManyToOne
-    @JoinColumn(name= "paises_uniqid")
-    private Paises pais;
-    
-    //@Column(name = "otro_pais")
-    //private String otroPais;
-    
-    @ManyToOne
-    @JoinColumn(name= "estado_civil_uniqid")
-    private EstadoCivil estadoCivil;
-    
-    @ManyToOne
-    @JoinColumn(name= "etnias_uniqid")
-    private Etnias etnia;
-    
     @Column(name = "otra_etnia")
     private String otraEtnia;
     
-    @ManyToOne
-    @JoinColumn(name= "sexos_uniqid")
-    private Sexos sexo;
-    
-    @ManyToOne
-    @JoinColumn(name= "iden_d_gene_uniqid")
-    private IdentidadGenero identidadGenero;
-    
-    @ManyToOne
-    @JoinColumn(name= "orie_sex_uniqid")
-    private OrientacionSexual orientacionSexual;
-    
-   
     @Column(name = "discapacitado")
     private String discapacitado;
     
@@ -71,8 +40,36 @@ public class DatosDemograficos implements Serializable{
     private String victimaConflictoArm;
     
     @ManyToOne
-    @JoinColumn(name= "usuarios_uniqid")
+    @JoinColumn(name = "nacionalidades_uniqid")
+    private Nacionalidades nacionalidad; 
+    
+    @ManyToOne
+    @JoinColumn(name = "paises_uniqid")
+    private Paises pais;
+    
+    @ManyToOne
+    @JoinColumn(name = "estado_civil_uniqid")
+    private EstadoCivil estadoCivil;
+    
+    @ManyToOne
+    @JoinColumn(name = "etnias_uniqid")
+    private Etnias etnia;
+    
+    @ManyToOne
+    @JoinColumn(name = "sexos_uniqid")
+    private Sexos sexo;
+    
+    @ManyToOne
+    @JoinColumn(name="iden__d__gene_uniqid")
+    private IdentidadGenero identidadGenero;
+    
+    @ManyToOne
+    @JoinColumn(name = "orie_sex_uniqid")
+    private OrientacionSexual orientacionSexual;
+    
+    @ManyToOne
+    @JoinColumn(name = "usuarios_uniqid")
     private Usuarios usuarios;
     
-         
+    
 }

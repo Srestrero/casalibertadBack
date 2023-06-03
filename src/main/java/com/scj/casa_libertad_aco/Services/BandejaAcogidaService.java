@@ -31,7 +31,7 @@ public class BandejaAcogidaService {
             }*/
             List<BandejaAcogida> listado = new ArrayList();
             for(BandejaAcogida item:lista){
-                if(cont<12){
+                //if(cont<12){
                     
                     item.setId(cont);
                     item.setNumeroDocumento(lista.get(cont).getNumeroDocumento());
@@ -44,7 +44,7 @@ public class BandejaAcogidaService {
                     
                     
                     cont = cont + 1;
-                }
+                //}
                 
             }
             return listado;

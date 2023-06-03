@@ -1,11 +1,14 @@
 
 package com.scj.casa_libertad_aco.Services;
 
+import com.scj.casa_libertad_aco.Controllers.ViviendasController;
 import com.scj.casa_libertad_aco.Entities.Usuarios;
 import com.scj.casa_libertad_aco.Entities.Viviendas;
 import com.scj.casa_libertad_aco.Repositories.UsuariosRepository;
 import com.scj.casa_libertad_aco.Repositories.ViviendasRepository;
 import com.scj.casa_libertad_aco.salidaDTOs.ConsultaViviendaDTO;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.Service;
 
@@ -45,9 +48,20 @@ public class ViviendasService {
     public Usuarios crearViviendaUsuario(String numeroDocumento,int tipo){
         Usuarios usuario = usuariosRepository.findByNumeroDocumento(numeroDocumento);
         Viviendas vivienda = viviendasRepository.findByUniqid(tipo);
+        if(vivienda==null){
         usuario.setViviendaTipo(vivienda);
         usuariosRepository.save(usuario);
-        return usuario;
+        //return usuariio;
+        }else{
+            try {
+                //ViviendasController viviendas = new ViviendasController();
+                actualizaViviendaUsuario(numeroDocumento,tipo);
+            } catch (Exception ex) {
+                Logger.getLogger(ViviendasService.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }
+        return usuario; 
     
     }
     
