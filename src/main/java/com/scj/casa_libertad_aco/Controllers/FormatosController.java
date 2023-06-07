@@ -1,10 +1,9 @@
 
 package com.scj.casa_libertad_aco.Controllers;
 
-import com.scj.casa_libertad_aco.Entities.Formatos;
 import com.scj.casa_libertad_aco.Services.FormatosService;
 import com.scj.casa_libertad_aco.entradaDTOs.FormatosDTO;
-import javax.validation.Valid;
+//import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
