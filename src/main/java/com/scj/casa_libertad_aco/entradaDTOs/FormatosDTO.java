@@ -10,6 +10,9 @@ public class FormatosDTO {
     String consentimiento_firma;
     String trat_datos_firma;
     String autoriz_imagen_firma;
+    String nom_consentimiento_firma;
+    String nom_trat_datos_firma;
+    String nom_autoriz_imagen_firma;
     byte[] adjunto_concentimiento;
     byte[] adjunto_trat_datos;
     byte[] adjunto_uso_imagen;

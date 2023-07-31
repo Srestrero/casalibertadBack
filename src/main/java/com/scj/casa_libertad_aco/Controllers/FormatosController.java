@@ -28,26 +28,31 @@ public class FormatosController {
     
     @PostMapping("/save")
     public ResponseEntity crearFormatos(@RequestParam String numeroDocumento,
-            @RequestParam String consentimientoFirma, @RequestParam String tratamientoDatosFirma, 
-            @RequestParam String autorizImagenFirma, @RequestParam String mediosAttNoPresenc, 
-            @RequestParam String estado,@RequestParam MultipartFile consentimiento, 
-            @RequestParam MultipartFile autorTratamDatos, @RequestParam MultipartFile autorUsoImagen ){
-        formatosService.crearFormato(numeroDocumento,consentimientoFirma,tratamientoDatosFirma,
-                autorizImagenFirma,mediosAttNoPresenc,estado,consentimiento,autorTratamDatos,autorUsoImagen);
+                                        @RequestParam String consentimientoFirma, @RequestParam String tratamientoDatosFirma,
+                                        @RequestParam String autorizImagenFirma, @RequestParam String nomConsentimientoFirma, @RequestParam String nomTratamientoDatosFirma, @RequestParam String nomAutorizImagenFirma, @RequestParam String mediosAttNoPresenc,
+                                        @RequestParam String estado,@RequestParam MultipartFile consentimiento,
+                                        @RequestParam MultipartFile autorTratamDatos, @RequestParam MultipartFile autorUsoImagen ){
+        formatosService.crearFormato(numeroDocumento,
+                consentimientoFirma,tratamientoDatosFirma,
+                autorizImagenFirma,nomConsentimientoFirma,nomTratamientoDatosFirma,
+                nomAutorizImagenFirma,mediosAttNoPresenc,
+                estado,consentimiento,
+                autorTratamDatos, autorUsoImagen );
         return ResponseEntity.status(201).build();   
     }
     
     @PutMapping("/actualizar")
     public ResponseEntity actualizaFormatos(@RequestParam String numeroDocumento,
             @RequestParam String consentimientoFirma, @RequestParam String tratamientoDatosFirma, 
-            @RequestParam String autorizImagenFirma, @RequestParam String mediosAttNoPresenc, 
+            @RequestParam String autorizImagenFirma, @RequestParam String nomConsentimientoFirma, @RequestParam String nomTratamientoDatosFirma, @RequestParam String nomAutorizImagenFirma, @RequestParam String mediosAttNoPresenc,
             @RequestParam String estado,@RequestParam MultipartFile consentimiento, 
             @RequestParam MultipartFile autorTratamDatos, @RequestParam MultipartFile autorUsoImagen )throws Exception {
         formatosService.actualizaFormato(numeroDocumento,
-            consentimientoFirma,tratamientoDatosFirma, 
-            autorizImagenFirma,mediosAttNoPresenc, 
-            estado,consentimiento, 
-            autorTratamDatos, autorUsoImagen );
+                consentimientoFirma,tratamientoDatosFirma,
+                autorizImagenFirma,nomConsentimientoFirma,nomTratamientoDatosFirma,
+                nomAutorizImagenFirma,mediosAttNoPresenc,
+                estado,consentimiento,
+                autorTratamDatos, autorUsoImagen );
         return ResponseEntity.status(201).build();
 
     }

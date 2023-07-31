@@ -2,7 +2,7 @@
 package com.scj.casa_libertad_aco.Entities;
 
 import java.util.Date;
-
+import java.util.List;
 import java.io.Serializable;
 import javax.persistence.*;
 import lombok.*;
@@ -56,9 +56,13 @@ public class AntecedentesPrivLib implements Serializable {
     @Column(name = "sisipec")
     private String sisipec;
     
-    @ManyToOne
-    @JoinColumn(name = "delitos_uniqid")
-    private Delitos delitos;
+    @ManyToMany
+    @JoinTable(
+        name = "antecedentes_delitos",
+        joinColumns = @JoinColumn(name = "antecedentes_id"),
+        inverseJoinColumns = @JoinColumn(name = "delitos_id")
+    )
+    private List<Delitos> delitos;
     
     @ManyToOne
     @JoinColumn(name = "estab_carcs_uniqid")

@@ -45,20 +45,6 @@ public class AntecedentesPrivLibController {
             @RequestBody AntecedentesDTO antecedentesDTO )throws Exception{
         antecedentesPrivLibService.actualizaAntecedentes(numeroDocumento,antecedentesDTO);
         return ResponseEntity.status(201).build();
-    } 
-    
-    
-    
-  
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    }
     
 }

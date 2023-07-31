@@ -1,4 +1,3 @@
-
 package com.scj.casa_libertad_aco.Services;
 
 import com.scj.casa_libertad_aco.Entities.AntecedentesPrivLib;
@@ -12,6 +11,9 @@ import com.scj.casa_libertad_aco.Repositories.EstablecimientosCarcRepository;
 import com.scj.casa_libertad_aco.Repositories.SituacionJuridicaRepository;
 import com.scj.casa_libertad_aco.Repositories.UsuariosRepository;
 import com.scj.casa_libertad_aco.entradaDTOs.AntecedentesDTO;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.*;
@@ -50,10 +52,7 @@ public class AntecedentesPrivLibService {
         nuevoAntecedentes.setAprehendAdolesc(antecedentesDTO.getAprehend_adolesc());
         nuevoAntecedentes.setAprehendMayor(antecedentesDTO.getAprehend_mayor());
         nuevoAntecedentes.setProcesoActual(antecedentesDTO.getProceso_actual());
-        
-        Delitos delitos = delitosRepository.findByUniqid(antecedentesDTO.getDelitos_uniqid());
-        nuevoAntecedentes.setDelitos(delitos);
-        
+
         EstablecimientosCarc establecimientosCarc = establecimientosCarcRepository.findByUniqid(antecedentesDTO.getEstab_carcs_uniqid());
         nuevoAntecedentes.setEstabCarcelarios(establecimientosCarc);
        
@@ -70,10 +69,19 @@ public class AntecedentesPrivLibService {
         
         nuevoAntecedentes.setUsuarios(usuariosRepository.findByNumeroDocumento(numeroDocumento));
         
+        int[] delitosIds= antecedentesDTO.getDelitos_uniqid();
+        List<Delitos> delitosCometidos = new ArrayList<>();
+        for (int delitoId : delitosIds) {
+            Delitos delito = delitosRepository.findById(delitoId).orElse(null);
+            if (delito != null) {
+                delitosCometidos.add(delito);
+            }
+        }
+        nuevoAntecedentes.setDelitos(delitosCometidos);
         return antecedentesPrivLibRepository.save(nuevoAntecedentes);
         }else{
             try {
-                actualizaAntecedentes(numeroDocumento,antecedentesDTO);
+                // actualizaAntecedentes(numeroDocumento,antecedentesDTO);
             } catch (Exception ex) {
                 Logger.getLogger(AntecedentesPrivLibService.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -99,9 +107,20 @@ public class AntecedentesPrivLibService {
         antecedentes.setAprehend_adolesc(antecedentesPrivLib.getAprehendAdolesc());
         antecedentes.setAprehend_mayor(antecedentesPrivLib.getAprehendMayor());
         antecedentes.setProceso_actual(antecedentesPrivLib.getProcesoActual());
-        antecedentes.setDelitos_uniqid(antecedentesPrivLib.getDelitos().getUniqid());
-        antecedentes.setEstab_carcs_uniqid(antecedentesPrivLib.getEstabCarcelarios().getUniqid());
-        antecedentes.setSit_jurid_uniqid(antecedentesPrivLib.getSituacionJuridicas().getUniqid());
+        List<Delitos> delitosList = antecedentesPrivLib.getDelitos();
+
+        // Crear un array de enteros para almacenar los IDs de los delitos
+        int[] delitosIds = new int[delitosList.size()];
+
+        // Recorrer la lista de delitos para obtener los IDs de cada delito
+        for (int i = 0; i < delitosList.size(); i++) {
+            Delitos delito = delitosList.get(i);
+            delitosIds[i] = delito.getUniqid(); // Suponiendo que 'getId()' es el método para obtener el ID del delito
+        }
+
+        antecedentes.setDelitos_uniqid(delitosIds);
+        // antecedentes.setEstab_carcs_uniqid(antecedentesPrivLib.getEstabCarcelarios().getUniqid());
+        // antecedentes.setSit_jurid_uniqid(antecedentesPrivLib.getSituacionJuridicas().getUniqid());
         antecedentes.setPersoneria(antecedentesPrivLib.getPersoneria());
         antecedentes.setProcuraduria(antecedentesPrivLib.getProcuraduria());
         antecedentes.setContraloria(antecedentesPrivLib.getContraloria());
@@ -114,6 +133,7 @@ public class AntecedentesPrivLibService {
         return antecedentes;
                         
         }catch(Exception e){
+            System.out.println(e.getMessage());
         return null;
         }
     }
@@ -138,9 +158,6 @@ public class AntecedentesPrivLibService {
             antecedentesPrivLib.setAprehendMayor(antecedentesDTO.getAprehend_mayor());
             antecedentesPrivLib.setProcesoActual(antecedentesDTO.getProceso_actual());
 
-            Delitos delitos = delitosRepository.findByUniqid(antecedentesDTO.getDelitos_uniqid());
-            antecedentesPrivLib.setDelitos(delitos);
-
             EstablecimientosCarc establecimientosCarc = establecimientosCarcRepository.findByUniqid(antecedentesDTO.getEstab_carcs_uniqid());
             antecedentesPrivLib.setEstabCarcelarios(establecimientosCarc);
 
@@ -157,7 +174,18 @@ public class AntecedentesPrivLibService {
 
             antecedentesPrivLib.setUsuarios(usuariosRepository.findByNumeroDocumento(numeroDocumento));
 
+            int[] delitosIds= antecedentesDTO.getDelitos_uniqid();
+            List<Delitos> delitosCometidos = new ArrayList<>();
+            for (int delitoId : delitosIds) {
+                Delitos delito = delitosRepository.findById(delitoId).orElse(null);
+                if (delito != null) {
+                    delitosCometidos.add(delito);
+                }
+            }
+            antecedentesPrivLib.setDelitos(delitosCometidos);
             return antecedentesPrivLibRepository.save(antecedentesPrivLib);
+        
+
 
         } catch (Exception e) {
             return null;

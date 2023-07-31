@@ -39,6 +39,9 @@ public class FormatosService {
             formatosDTO.setConsentimiento_firma(formato.getConsentimientoFirma());
             formatosDTO.setTrat_datos_firma(formato.getTratamientoDatosFirma());
             formatosDTO.setAutoriz_imagen_firma(formato.getAutorizImagenFirma());
+            formatosDTO.setNom_consentimiento_firma(formato.getNombreConsentimientoFirma());
+            formatosDTO.setNom_trat_datos_firma(formato.getNombreTratamientoDatosFirma());
+            formatosDTO.setNom_autoriz_imagen_firma(formato.getNombreAutorizImagenFirma());
             formatosDTO.setAdjunto_concentimiento(formato.getConsentimiento());
             formatosDTO.setAdjunto_trat_datos(formato.getAutorTratamDatos());
             formatosDTO.setAdjunto_uso_imagen(formato.getAutorUsoImagen());
@@ -56,8 +59,9 @@ public class FormatosService {
     /*
     C-Crear
     */
-    public Formatos crearFormato(String numeroDocumento, String consentimientoFirma, String tratamientoDatosFirma,
-            String autorizImagenFirma, String mediosAttNoPresenc, String estado, MultipartFile consentimiento,
+    public Formatos crearFormato(String numeroDocumento, String consentimientoFirma, String tratamientoDatosFirma,String autorizImagenFirma,
+                                 String nomConsentimientoFirma, String nomTratamientoDatosFirma,
+            String nomAutorizImagenFirma, String mediosAttNoPresenc, String estado, MultipartFile consentimiento,
             MultipartFile autorTratamDatos, MultipartFile autorUsoImagen) {
         
         Usuarios usuarios=usuariosRepository.findByNumeroDocumento(numeroDocumento);
@@ -68,6 +72,10 @@ public class FormatosService {
         formato.setConsentimientoFirma(consentimientoFirma);
         formato.setTratamientoDatosFirma(tratamientoDatosFirma);
         formato.setAutorizImagenFirma(autorizImagenFirma);
+        formato.setNombreConsentimientoFirma(nomConsentimientoFirma);
+        formato.setNombreTratamientoDatosFirma(nomTratamientoDatosFirma);
+        formato.setNombreAutorizImagenFirma(nomAutorizImagenFirma);
+
         try {
             //formato.setConsentimiento(formatosDTO.getAdjunto_concentimiento());
             formato.setConsentimiento(consentimiento.getBytes());
@@ -93,9 +101,12 @@ public class FormatosService {
         return formatosRepository.save(formato);
         }else{
             try {
-                actualizaFormato(numeroDocumento,consentimientoFirma,tratamientoDatosFirma,
-                        autorizImagenFirma,mediosAttNoPresenc,estado,consentimiento,
-                        autorTratamDatos,autorUsoImagen);
+                actualizaFormato(numeroDocumento,
+                        consentimientoFirma,tratamientoDatosFirma,
+                        autorizImagenFirma,nomConsentimientoFirma,nomTratamientoDatosFirma,
+                        nomAutorizImagenFirma,mediosAttNoPresenc,
+                        estado,consentimiento,
+                        autorTratamDatos, autorUsoImagen );
             } catch (Exception ex) {
                 Logger.getLogger(FormatosService.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -106,9 +117,10 @@ public class FormatosService {
     /*
     U-actualizar
     */
-    public Formatos actualizaFormato(String numeroDocumento, String consentimientoFirma, String tratamientoDatosFirma,
-            String autorizImagenFirma, String mediosAttNoPresenc, String estado, MultipartFile consentimiento,
-            MultipartFile autorTratamDatos, MultipartFile autorUsoImagen)
+    public Formatos actualizaFormato(String numeroDocumento, String consentimientoFirma, String tratamientoDatosFirma,String autorizImagenFirma,
+                                     String nomConsentimientoFirma, String nomTratamientoDatosFirma,
+                                     String nomAutorizImagenFirma, String mediosAttNoPresenc, String estado, MultipartFile consentimiento,
+                                     MultipartFile autorTratamDatos, MultipartFile autorUsoImagen)
             throws Exception {
         try {
             //Formatos formato = new Formatos();
@@ -117,6 +129,9 @@ public class FormatosService {
             formato.setConsentimientoFirma(consentimientoFirma);
             formato.setTratamientoDatosFirma(tratamientoDatosFirma);
             formato.setAutorizImagenFirma(autorizImagenFirma);
+            formato.setNombreConsentimientoFirma(nomConsentimientoFirma);
+            formato.setNombreTratamientoDatosFirma(nomTratamientoDatosFirma);
+            formato.setNombreAutorizImagenFirma(nomAutorizImagenFirma);
             try {
                 //formato.setConsentimiento(formatosDTO.getAdjunto_concentimiento());
                 formato.setConsentimiento(consentimiento.getBytes());
